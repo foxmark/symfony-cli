@@ -6,6 +6,9 @@ class ToolService
 {
     public function cut()
     {
-        echo date('Y-m-d H:i:s') . PHP_EOL;
+        return [
+            ['Param1', 'Value1', time()],
+            ['Param2', 'Value2', time()]
+        ];
     }
 }

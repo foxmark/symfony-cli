@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Services\ToolService;
+use Symfony\Component\Console\Style\SymfonyStyle;
 
 class WorkService
 {
@@ -17,8 +18,13 @@ class WorkService
         $this->toolService = $toolService;
     }
 
-    public function useTool()
+    public function useTool($input, $output)
     {
-        $this->toolService->cut();
+        $io = new SymfonyStyle($input, $output);
+        $headers = ['Parameter', 'Value', 'Time'];
+
+        $rows = $this->toolService->cut();
+
+        $io->table($headers, $rows);
     }
 }
