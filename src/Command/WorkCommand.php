@@ -42,7 +42,7 @@ class WorkCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->eventDispatcher->dispatch(
-            new ProductEvent('something'),
+            new ProductEvent('Name_'. time()),
             ProductEvents::CREATE
         );
         $this->work->useTool();

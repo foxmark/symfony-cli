@@ -8,8 +8,13 @@ class ProductEvent extends Event
 {
     private $name;
 
-    public function __construct($name)
+    public function __construct(string $name)
     {
         $this->name = $name;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
     }
 }
