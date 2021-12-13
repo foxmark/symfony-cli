@@ -14,9 +14,9 @@ class ProductSubscriber implements EventSubscriberInterface
      */
     private $log;
 
-    public function __construct(LoggerInterface $logger)
+    public function __construct(LoggerInterface $productLogger)
     {
-        $this->log = $logger;
+        $this->log = $productLogger;
     }
 
     public static function getSubscribedEvents(): array
