@@ -19,7 +19,7 @@ class ProductSubscriber implements EventSubscriberInterface
         $this->log = $logger;
     }
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             ProductEvents::CREATE => ['onProductCreate', 0],
