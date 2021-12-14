@@ -3,7 +3,7 @@
 namespace App\EventSubscriber;
 
 use App\Event\ProductEvent;
-use App\Event\ProductEvents;
+use App\Event\ProductEventType;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Psr\Log\LoggerInterface;
 
@@ -22,9 +22,9 @@ class ProductSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            ProductEvents::CREATE => ['onProductCreate', 0],
-            ProductEvents::UPDATE => ['onProductUpdate', 0],
-            ProductEvents::DELETE => ['onProductDelete', 0]
+            ProductEventType::CREATE => ['onProductCreate', 0],
+            ProductEventType::UPDATE => ['onProductUpdate', 0],
+            ProductEventType::DELETE => ['onProductDelete', 0]
         ];
     }
 

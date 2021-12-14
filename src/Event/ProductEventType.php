@@ -2,7 +2,7 @@
 
 namespace App\Event;
 
-final class ProductEvents
+final class ProductEventType
 {
     const CREATE = 'foxmark.product.create';
     const UPDATE = 'foxmark.product.update';
