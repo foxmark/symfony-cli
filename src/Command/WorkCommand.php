@@ -42,8 +42,10 @@ class WorkCommand extends Command
             new ProductEvent('Name_'. time()),
             ProductEventType::CREATE
         );
-        if ($this->productService->make()) {
-            $output->write('Product ready.', true);
+        if ($id = $this->productService->make()) {
+            $output->write('New productID: ' . $id, true);
+            $db_product = $this->productService->show($id);
+            dd($db_product);
         } else {
             $output->write('Something went wrong.', true);
         }

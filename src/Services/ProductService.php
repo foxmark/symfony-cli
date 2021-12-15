@@ -23,7 +23,7 @@ class ProductService
         $this->entityManager = $entityManager;
     }
 
-    public function make(): bool
+    public function make(): ?int
     {
         try {
             $product = new Product();
@@ -33,8 +33,19 @@ class ProductService
             $this->entityManager->persist($product);
             $this->entityManager->flush();
         } catch (\Exception $e) {
-            return false;
+            return null;
         }
-        return true;
+        return $product->getId();
+    }
+
+    public function show(int $id): ?Product
+    {
+        $repository = $this->entityManager->getRepository(Product::class);
+        $product = $repository->find($id);
+        if (!$product) {
+            $this->logger->info('Product Not found for ID:' . $id);
+            return null;
+        }
+        return $product;
     }
 }
