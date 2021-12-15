@@ -4,39 +4,36 @@ namespace App\Command;
 
 use App\Event\ProductEvent;
 use App\Event\ProductEventType;
+use App\Services\ProductService;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputOption;
-use App\Services\WorkService;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class WorkCommand extends Command
 {
-
-    /**
-     * @var WorkService
-     */
-    private $work;
     /**
      * @var EventDispatcherInterface
      */
     private $eventDispatcher;
+    /**
+     * @var ProductService
+     */
+    private $productService;
 
-    public function __construct(WorkService $work, EventDispatcherInterface $eventDispatcher)
+    public function __construct(EventDispatcherInterface $eventDispatcher, ProductService $productService)
     {
         parent::__construct();
-        $this->work = $work;
         $this->eventDispatcher = $eventDispatcher;
+        $this->productService  = $productService;
     }
 
     protected function configure()
     {
-        $this->setName('work:start')
-            ->setDescription('Start work')
-            ->setHelp('Work now');
-
-        $this->addOption('work', 'w', InputOption::VALUE_OPTIONAL, 'Type', null);
+        $this->setName('product:make')
+            ->setDescription('Make Product')
+            ->setHelp('Make New Product');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -45,7 +42,11 @@ class WorkCommand extends Command
             new ProductEvent('Name_'. time()),
             ProductEventType::CREATE
         );
-        $this->work->useTool();
+        if ($this->productService->make()) {
+            $output->write('Product ready.', true);
+        } else {
+            $output->write('Something went wrong.', true);
+        }
         return 0;
     }
 }
