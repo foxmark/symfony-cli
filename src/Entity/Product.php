@@ -10,6 +10,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Product
 {
+    // More about annotations:
+    // https://www.doctrine-project.org/projects/doctrine-orm/en/2.10/reference/annotations-reference.html
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
