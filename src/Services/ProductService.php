@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Entity\Product;
+use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 
@@ -16,11 +17,15 @@ class ProductService
      * @var EntityManagerInterface
      */
     private $entityManager;
+    /**
+     * @var ProductRepository
+     */
+    private $productRepository;
 
-    public function __construct(LoggerInterface $logger, EntityManagerInterface $entityManager)
+    public function __construct(LoggerInterface $logger, ProductRepository $productRepository)
     {
-        $this->logger        = $logger;
-        $this->entityManager = $entityManager;
+        $this->logger            = $logger;
+        $this->productRepository = $productRepository;
     }
 
     public function make(): ?int
@@ -30,8 +35,7 @@ class ProductService
             $product->setName('SomeName' . rand(100, 999))
                 ->setSKU('SKU_' . time())
                 ->setActive(1);
-            $this->entityManager->persist($product);
-            $this->entityManager->flush();
+            $this->productRepository->persist($product);
         } catch (\Exception $e) {
             return null;
         }
@@ -40,8 +44,7 @@ class ProductService
 
     public function show(int $id): ?Product
     {
-        $repository = $this->entityManager->getRepository(Product::class);
-        $product = $repository->find($id);
+        $product = $this->productRepository->find($id);
         if (!$product) {
             $this->logger->info('Product Not found for ID:' . $id);
             return null;

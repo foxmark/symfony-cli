@@ -19,6 +19,13 @@ class ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Product::class);
     }
 
+    public function persist(Product $product)
+    {
+        // _em is EntityManager which is DI by the base class
+        $this->_em->persist($product);
+        $this->_em->flush();
+    }
+
     // /**
     //  * @return Product[] Returns an array of Product objects
     //  */
