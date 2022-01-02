@@ -21,14 +21,22 @@
         "symfony/yaml": "5.4.*"
     },
     "require-dev": {
-        "symfony/maker-bundle": "^1.36"
+        "symfony/debug-bundle": "5.4.*",
+        "symfony/maker-bundle": "^1.36",
+        "symfony/stopwatch": "5.4.*",
+        "symfony/web-profiler-bundle": "5.4.*"
     },
     "config": {
         "optimize-autoloader": true,
         "preferred-install": {
             "*": "dist"
         },
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "symfony/flex": true,
+            "symfony/runtime": true
+        }
     },
     "autoload": {
         "psr-4": {
