@@ -9,6 +9,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class WorkCommand extends Command
@@ -38,16 +39,30 @@ class WorkCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $this->eventDispatcher->dispatch(
-            new ProductEvent('Name_'. time()),
-            ProductEventType::CREATE
-        );
-        if ($id = $this->productService->make()) {
-            $output->write('New productID: ' . $id, true);
-            $db_product = $this->productService->show($id);
-            dd($db_product);
-        } else {
-            $output->write('Something went wrong.', true);
+
+        //$a = array('x', 's', 'g', 'a', 'b');
+        $a = array(9, 5, 2, 1, 4, 3, 6, 7, 8, 8, 11, 12,99, 154, 0, -1, -9);
+        $arr = [];
+        foreach ($a as $time) {
+            $obj = new \stdClass();
+            $obj->time = $time;
+            $arr[]     = $obj;
+        }
+
+        usort($arr, 'self::cmp');
+
+        foreach ($arr as $item) {
+            dump($item);
+        }
+        return 0;
+    }
+
+    protected static function cmp($a, $b)
+    {
+        if ($a->time < $b->time) {
+            return 1;
+        } elseif ($a->time > $b->time) {
+            return -1;
         }
         return 0;
     }
