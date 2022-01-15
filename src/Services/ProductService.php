@@ -33,6 +33,7 @@ class ProductService
             $this->entityManager->persist($product);
             $this->entityManager->flush();
         } catch (\Exception $e) {
+            $this->logger->error($e->getMessage());
             return null;
         }
         return $product->getId();

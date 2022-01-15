@@ -1,5 +1,9 @@
 security:
     enable_authenticator_manager: true
+
+    # uncomment to show email not found error instead bad credentials (google: user enumeration)
+    # hide_user_not_found: false
+
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
@@ -9,7 +13,7 @@ security:
         app_user_provider:
             entity:
                 class: App\Entity\User
-                property: email
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -17,6 +21,14 @@ security:
         main:
             lazy: true
             provider: app_user_provider
+            custom_authenticator: App\Security\LoginFormAuthenticator
+            logout: true
+            remember_me:
+                secret: '%kernel.secret%'
+                remember_me_parameter: _remember_me
+                signature_properties: [password]
+                #always_remember_me: true
+
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
