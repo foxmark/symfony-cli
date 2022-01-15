@@ -1,9 +1,12 @@
+{% trans_default_domain 'system' %}
 {% extends 'base.html.twig' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}{% trans %}home{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1>Home</h1>
+    <h1>{% trans %}home{% endtrans %}</h1>
     <br>
-    <a href=" {{ path('app_login') }}">Login</a>
+    <h2>Locate {{ locate }}</h2>
+    <br>
+    <a href=" {{ path('app_login') }}">{% trans %}login{% endtrans %}</a>
 {% endblock %}

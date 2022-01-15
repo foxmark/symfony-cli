@@ -41,6 +41,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     private $plainPassword;
 
+    /**
+     * @ORM\Column(type="string", length=5, nullable=true)
+     */
+    private $locate;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -151,5 +156,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPlainPassword($plainPassword): void
     {
         $this->plainPassword = $plainPassword;
+    }
+
+    public function getLocate(): ?string
+    {
+        return $this->locate;
+    }
+
+    public function setLocate(?string $locate): self
+    {
+        $this->locate = $locate;
+
+        return $this;
     }
 }
