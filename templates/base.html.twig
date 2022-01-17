@@ -16,6 +16,15 @@
     </head>
     <body>
         <div class="container">
+            {% if is_granted('IS_AUTHENTICATED_FULLY')  %}
+                <p>Fresh login</p>
+                <a href=" {{ path('app_logout') }}">Logout</a>
+            {% elseif is_granted('IS_AUTHENTICATED_REMEMBERED')  %}
+                <p>Remember Me cookie used</p>
+                <a href=" {{ path('app_logout') }}">Logout</a>
+            {% else %}
+                <a href=" {{ path('app_login') }}">Login</a>
+            {% endif %}
             {% block body %}{% endblock %}
         </div>
     </body>
