@@ -43,6 +43,12 @@ security:
                 # optionally
                 # always_remember_me: true
 
+            # run [symfony console debug:config security] to see current config
+            # limit login rate
+            login_throttling:
+                max_attempts: 10
+                interval: '1 minute'
+
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
