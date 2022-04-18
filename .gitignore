@@ -17,3 +17,5 @@
 ###> phpunit/phpunit ###
 bin/phpunit
 ###< phpunit/phpunit ###
+
+/docker/mysql/data/*
