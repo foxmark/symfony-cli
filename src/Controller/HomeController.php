@@ -14,4 +14,12 @@ class HomeController extends AbstractController
     {
         return $this->render('index.html.twig');
     }
+
+    /**
+     * @Route("/dev-info", name="app_devinfo")
+     */
+    public function showPhpInfo()
+    {
+        dd(phpinfo());
+    }
 }
