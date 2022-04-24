@@ -20,6 +20,6 @@ class HomeController extends AbstractController
      */
     public function showPhpInfo()
     {
-        dd(phpinfo());
+        return $this->redirectToRoute('_profiler_phpinfo');
     }
 }
