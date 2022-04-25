@@ -9,7 +9,7 @@
 
 `docker-compose up`
 
-`docker exec -it php74-container bash`
+`docker exec -it php81-container bash`
 
 `bin/console doctrine:database:create`
 
