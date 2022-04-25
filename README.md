@@ -9,10 +9,12 @@
 
 `docker-compose up`
 
-`docker exec -it php81-container bash`
+`docker exec php81-container bin/console doctrine:database:create`
 
-`bin/console doctrine:database:create`
+`docker exec php81-container bin/console doctrine:migrations:migrate`
 
-`bin/console doctrine:migrations:migrate`
+**Optionally on Dev** To populate user table:
 
-`bin/console doctrine:fixtures:load`
+`docker exec php81-container bin/console doctrine:fixtures:load`
+
+This will create test users all with the same password: `password`
