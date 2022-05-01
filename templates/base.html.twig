@@ -13,6 +13,23 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
+        <style>
+            body {
+                background-color: #000000;
+                color: #0CC305;
+            }
+            a:visited {
+                color: #0CC305;
+            }
+            a:link {
+                color: #0CC305;
+                text-decoration: underline;
+            }
+            a:hover {
+                color: #ff0000;
+                text-decoration: none;
+            }
+        </style>
     </head>
     <body>
         <div class="container">
