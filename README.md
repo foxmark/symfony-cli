@@ -2,7 +2,7 @@
 
 # TO DO:
 
- - add custom php.ini config
+ ~~- add custom php.ini config~~
 
 
 # Using docker compose
