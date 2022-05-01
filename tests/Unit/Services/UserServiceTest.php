@@ -9,7 +9,7 @@ use App\Tests\DatabasePrimer;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-class ProductServiceTest extends KernelTestCase
+class UserServiceTest extends KernelTestCase
 {
     protected $entityManager;
 
@@ -29,18 +29,17 @@ class ProductServiceTest extends KernelTestCase
         $this->entityManager = null;
     }
 
-    public function testCanCreateProduct()
+    public function testUser()
     {
-        $product = new Product();
-        $product->setName('New Product Name')
-            ->setSKU('SKU_' . time())
-            ->setActive(1);
-        $this->entityManager->persist($product);
+        $user = new User();
+        $user->setEmail('admin@server.com')
+            ->setFirstName('Admin')
+            ->setPassword('password');
+        $this->entityManager->persist($user);
         $this->entityManager->flush();
-
-        /** @var EntityManager entityManager */
-        $db = $this->entityManager->getRepository(Product::class);
-        $saved_product = $db->find($product->getId());
-        $this->assertSame($saved_product, $product);
+        /** @var UserRepository $user_rep */
+        $user_rep = $this->entityManager->getRepository(User::class);
+        $user = $user_rep->findOneBy(['email' => 'admin@server.com']);
+        $this->assertTrue($user instanceof User);
     }
 }
