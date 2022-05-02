@@ -2,32 +2,13 @@
 
 namespace App\Tests\Unit\Services;
 
-use App\Entity\Product;
 use App\Entity\User;
 use App\Repository\UserRepository;
-use App\Tests\DatabasePrimer;
-use Doctrine\ORM\EntityManager;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use App\Tests\DatabaseDependantTestCase;
 
-class UserServiceTest extends KernelTestCase
+class UserServiceTest extends DatabaseDependantTestCase
 {
     protected $entityManager;
-
-    public function setUp(): void
-    {
-        $kernel = self::bootKernel();
-        DatabasePrimer::prime($kernel);
-        /** @var EntityManager entityManager */
-        $this->entityManager = $kernel->getContainer()->get('doctrine')->getManager();
-    }
-
-    protected function tearDown(): void
-    {
-        parent::tearDown();
-
-        $this->entityManager->close();
-        $this->entityManager = null;
-    }
 
     public function testUser()
     {
