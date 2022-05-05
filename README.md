@@ -13,6 +13,12 @@
 
 `docker exec php81-container bin/console doctrine:migrations:migrate`
 
+`docker exec php81-container bin/console messenger:setup-transports`
+
+**This is to run message consumer**
+
+`docker exec php81-container bin/console messenger:consume`
+
 **Optionally on Dev** To populate user table:
 
 `docker exec php81-container bin/console doctrine:fixtures:load`
