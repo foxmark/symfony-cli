@@ -1,10 +1,13 @@
 FROM php:8.1.5-fpm
 
-RUN apt-get update && apt-get install -y --no-install-recommends libxslt-dev zlib1g-dev g++ git libicu-dev zip libzip-dev zip \
-    && docker-php-ext-install intl opcache pdo pdo_mysql xsl bcmath \
-    && pecl install redis \
+RUN apt-get update && apt-get install -y --no-install-recommends libxslt-dev zlib1g-dev librabbitmq-dev libssh-dev g++ git libicu-dev zip libzip-dev zip \
+    && docker-php-ext-install intl opcache pdo pdo_mysql xsl bcmath sockets \
     && pecl install apcu \
+    && pecl install amqp \
+    && pecl install xdebug \
     && docker-php-ext-enable apcu \
+    && docker-php-ext-enable amqp \
+    && docker-php-ext-enable xdebug \
     && docker-php-ext-configure zip \
     && docker-php-ext-install zip \
     && apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*

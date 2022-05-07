@@ -8,7 +8,6 @@ volumes:
 
 
 services:
-  # nginx
   nginx-service:
     image: nginx:stable-alpine
     container_name: nginx-container
@@ -25,7 +24,6 @@ services:
     networks:
       - app1-network
 
-  # php
   php81-service:
     build:
       context: .
@@ -39,7 +37,6 @@ services:
     networks:
       - app1-network
 
-  # mysql
   mysql8-service:
     image: mysql:8.0
     container_name: mysql8-container
@@ -51,5 +48,17 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_PASSWORD: secret
+    networks:
+      - app1-network
+
+  rabbitmq-service:
+    image: rabbitmq:3.10.0-management
+    container_name: rabbitmq-container
+    ports:
+      - "15672:15672"
+    volumes:
+      - ./docker/rabbitmq/config/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+      - ./docker/rabbitmq/config/enabled_plugins:/etc/rabbitmq/enabled_plugins
+      - ./docker/rabbitmq/config/definitions.json:/etc/rabbitmq/definitions.json
     networks:
       - app1-network
