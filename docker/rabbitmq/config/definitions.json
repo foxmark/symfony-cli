@@ -1,7 +1,7 @@
 {
   "queues": [
       {
-        "name": "main_queue",
+        "name": "messages",
         "vhost": "/",
         "durable": true,
         "auto_delete": false,
