@@ -10,20 +10,44 @@ framework:
             # https://symfony.com/doc/current/messenger.html#transport-configuration
             async:
                 dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
-                retry_strategy:
-                    max_retries: 5
-                    delay: 1000
-            async_priority_high:
-                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                serializer: messenger.transport.symfony_serializer
                 retry_strategy:
                     max_retries: 5
                     delay: 1000
                 options:
                     exchange:
-                        name: messages_high_priority
+                        name: messages
+                        type: direct
+                        default_publish_routing_key: normal
                     queues:
-                        messages_high: ~
-
+                        messages_normal:
+                            binding_keys: [normal]
+            async_priority_high:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                serializer: messenger.transport.symfony_serializer
+                retry_strategy:
+                    max_retries: 5
+                    delay: 1000
+                options:
+                    exchange:
+                        name: messages
+                        type: direct
+                        default_publish_routing_key: high
+                    queues:
+                        messages_high:
+                            binding_keys: [high]
+            external_messages:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                serializer: App\Messenger\ExternalMessageSerializer
+                options:
+                    auto_setup: false
+                    exchange:
+                        name: messages
+                        type: direct
+                        default_publish_routing_key: from_external
+                    queues:
+                        messages_from_external:
+                            binding_keys: [from_external]
             failed: '%env(FAILED_TRANSPORT_DSN)%'
             # sync: 'sync://'
 
