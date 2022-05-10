@@ -17,7 +17,7 @@ class AdminController extends AbstractController
     public function index(MessageBusInterface $bus)
     {
         $this->denyAccessUnlessGranted(UserRoles::ADMIN);
-        $bus->dispatch(new SimpleMessage('This is my message to you-u-u-u'), [new DelayStamp(50000)]);
+        $bus->dispatch(new SimpleMessage('New Admin Visit'), [new DelayStamp(500)]);
         return $this->render('admin.html.twig');
     }
 }
