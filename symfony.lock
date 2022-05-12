@@ -1,4 +1,7 @@
 {
+    "brick/math": {
+        "version": "0.9.3"
+    },
     "composer/package-versions-deprecated": {
         "version": "1.11.99.4"
     },
@@ -109,6 +112,33 @@
     "doctrine/sql-formatter": {
         "version": "1.1.2"
     },
+    "enqueue/dsn": {
+        "version": "0.10.8"
+    },
+    "enqueue/enqueue": {
+        "version": "0.10.16"
+    },
+    "enqueue/enqueue-bundle": {
+        "version": "0.10",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "0.9",
+            "ref": "c6ec89b63f963d10ad0d7a7bea170359c119c8bc"
+        }
+    },
+    "enqueue/fs": {
+        "version": "0.10",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "0.4",
+            "ref": "822505a7de797bd869c5757bb9bae85f647d870d"
+        }
+    },
+    "enqueue/null": {
+        "version": "0.10.15"
+    },
     "fakerphp/faker": {
         "version": "v1.9.2"
     },
@@ -117,6 +147,9 @@
     },
     "laminas/laminas-code": {
         "version": "4.5.0"
+    },
+    "makasim/temp-file": {
+        "version": "0.2.0"
     },
     "monolog/monolog": {
         "version": "2.3.5"
@@ -188,6 +221,18 @@
     },
     "psr/log": {
         "version": "1.1.4"
+    },
+    "queue-interop/amqp-interop": {
+        "version": "0.8.2"
+    },
+    "queue-interop/queue-interop": {
+        "version": "0.8.1"
+    },
+    "ramsey/collection": {
+        "version": "1.2.2"
+    },
+    "ramsey/uuid": {
+        "version": "4.3.1"
     },
     "sebastian/cli-parser": {
         "version": "1.0.1"
