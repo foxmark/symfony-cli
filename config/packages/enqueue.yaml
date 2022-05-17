@@ -1,0 +1,6 @@
+enqueue:
+    default:
+        transport:
+            dsn: '%env(ENQUEUE_TRANSPORT_DSN)%'
+        client: ~
+
