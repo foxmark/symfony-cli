@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Message\ProductMessage;
 use App\Security\UserRoles;
 use Enqueue\Client\ProducerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,8 +24,8 @@ class AdminController extends AbstractController
     public function index(MessageBusInterface $bus)
     {
         $this->denyAccessUnlessGranted(UserRoles::ADMIN);
-        $message = ['title' => 'New Product', 'product_id' => 1, 'extra' => true];
-        $this->producer->sendCommand('productMessage', $message);
+        $message = new ProductMessage('Product', 1234, false);
+        $this->producer->sendCommand('productMessage', $message->toArray());
         return $this->render('admin.html.twig');
     }
 }
