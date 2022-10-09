@@ -9,6 +9,8 @@
 
 `docker-compose up`
 
+`docker exec php81-container composer install`
+
 `docker exec php81-container bin/console doctrine:database:create`
 
 `docker exec php81-container bin/console doctrine:migrations:migrate`
